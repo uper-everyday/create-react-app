@@ -3,6 +3,14 @@
 ~~~~
 #####从react，es6，babel,webpack编辑到打包，react-scripts都做了。
 ~~~~
+React, JSX, ES6, and Flow syntax support.
+Language extras beyond ES6 like the object spread operator.
+Import CSS and image files directly from JavaScript.
+Autoprefixed CSS, so you don’t need -webkit or other prefixes.
+A build script to bundle JS, CSS, and images for production, with sourcemaps.
+A dev server that lints for common errors.
+~~~~
+~~~~
 **通过npm run 执行下面命令实际上是运行 node_modules/react-srcipt/script下对应的脚本文件；**
 **npm run eject : 将隐藏的配置导出；需要知道的是create-react-app脚手架本质上是使用react-scripts进行配置项目，所有配置文件信息都被隐藏起来(node_modules/react-scripts)；当需要手动修改扩展webpack配置时有时就需要将隐藏的配置暴露出来；特别需要注意的是该操作是一个单向操作，一旦使用eject，那么就不能恢复了(再次将配置隐藏)；**
 
