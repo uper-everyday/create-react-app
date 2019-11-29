@@ -1,68 +1,29 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+~~~~
+1.react-scripts是create-react-app生成项目所有的依赖
+~~~~
+#####从react，es6，babel,webpack编辑到打包，react-scripts都做了。
+~~~~
+**通过npm run 执行下面命令实际上是运行 node_modules/react-srcipt/script下对应的脚本文件；**
+**npm run eject : 将隐藏的配置导出；需要知道的是create-react-app脚手架本质上是使用react-scripts进行配置项目，所有配置文件信息都被隐藏起来(node_modules/react-scripts)；当需要手动修改扩展webpack配置时有时就需要将隐藏的配置暴露出来；特别需要注意的是该操作是一个单向操作，一旦使用eject，那么就不能恢复了(再次将配置隐藏)；**
 
-## Available Scripts
+**npm run build : 项目打包，在生产环境中编译代码，并放在build目录中；所有代码将被正确打包，并进行优化、压缩同时使用hash重命名文件；执行该命令前需要在package.json中新增条配置"homepage": "."（上面配置文件已给出）, 同时build后的项目需要在服务器下才能访问；否则打开的将是空白页面；**
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+public: 公共目录，该目录下的文件都不会被webpack进行加载、解析、打包；通过npm run         build进行打包时该项目下的所有文件将会直接被复制到build目录下
+favicon.ico : 是网站图标[可替换删除]
+index.html: 页面模板，webpack打包后将输出文件引入到该模板内；补充：index.html中通过环境变量%PUBLIC_URL% 来指向public目录路径；
+manifest.json: PWA将应用添加至桌面的功能的实现依赖于 manifest.json 。通过manifest.json 文件可以对图标、名称等信息进行配置。
+ ~~~~ 
+ ~~~~  
+ registerServiceWorker.js: service worker 是在后台运行的一个线程，可以用来处理离线缓存、消息推送、后台自动更新等任务；registerServiceWorker就是为react项目注册了一个service worker，用来做资源的缓存，这样你下次访问时，就可以更快的获取资源。而且因为资源被缓存，所以即使在离线的情况下也可以访问应用（此时使用的资源是之前缓存的资源）。注意，registerServiceWorker注册的service worker 只在生产环境中生效，并且该功能只有在https下才能有效果；
+ ~~~~
+ `
+   npm install babel-plugin-transform-decorators-legacy插件
+   Package.json里babel加上plugins配置 "plugins":["transform-decorators-legacy"]
+   
+     "babel": {
+       "presets": [
+         "react-app"
+       ],
+       "plugins":["transform-decorators-legacy"]   
+     },
+   上面的步骤都完成了话就可以用@connect注解的方法来优化`
